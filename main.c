@@ -2,10 +2,13 @@
 
 extern int	ft_strlen(char *s);
 
+extern	char	*ft_strcpy(char *dst, char *src);
+
 int	main(void)
 {
-	int i;
+	char dst[] = "helloo";
+	char src[] = "world";
 
-	i = ft_strlen("abc");
-	printf("%d", i);
+	printf("%s", ft_strcpy(dst, src));
+	printf("%s", dst);
 }
