@@ -2,21 +2,23 @@ SECTION	.text
 global	ft_strcmp
 
 ft_strcmp:
-			push	rdi
-			push	rsi
-			mov		rax, 0
+		mov		r12, 0
+
 cmpchar:
-			mov		dl, byte [rdi]
-			mov		cl, byte [rsi]
-			cmp		dl, cl
-			jz		finished
-			inc		rdi
-			inc		rsi
-			jmp		cmpchar
+		mov		r13b, byte [rdi + r12]
+		sub		r13b, [rsi + r12]
+		jne		finished
+		cmp		byte [rdi + r12], 0
+		jz		finished
+		cmp		byte [rsi + r12], 0
+		jz		finished
+		inc		r12
+		jmp		cmpchar
+
 finished:
-			sub		dl, cl
-			mov		rax, rdx
-			pop		rsi
-			pop		rdi
-			ret
+		movsx rax, r13b
+		ret
+
+
+
 

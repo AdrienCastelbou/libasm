@@ -8,7 +8,7 @@ extern	int		ft_strcmp(char *s1, char *s2);
 
 int	main(void)
 {
-	char dst[] = "c";
-	char src[] = "b";
-	printf("return : [%d]\n", ft_strcmp("Hello", "Hello"));
+	char dst[] = "hello";
+	char src[] = "hallo";
+	printf("return : [%d]\n", ft_strcmp("hello", "hallo"));
 }
