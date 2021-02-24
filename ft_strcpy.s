@@ -4,6 +4,7 @@ global	ft_strcpy
 ft_strcpy:
 		push	rdi
 		push	rsi
+		push	rdx
 		mov		rax, 0
 
 copychar:
@@ -16,6 +17,7 @@ copychar:
 		jmp		copychar
 
 finished:
+		pop		rdx
 		pop		rsi
 		pop		rdi
 		mov		rax, rdi
