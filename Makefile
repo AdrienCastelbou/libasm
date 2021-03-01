@@ -15,7 +15,7 @@ NASM=	nasm -felf64
 
 CC=		gcc
 
-FLAGS=	-no-pie -Wall -Wextra -Werror
+FLAGS=	-no-pie
 
 %.o: %.s
 	$(NASM) $< -o $@
