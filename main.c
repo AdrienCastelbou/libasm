@@ -73,21 +73,21 @@ void		test_ft_read()
 	fd = open("main.c", O_RDONLY);
 	ret = read(fd, buff, 31);
 	buff[ret] = 0;
-	printf("OG read have read :\n\033[0;32m%s\033[0m\nThe return value is %d and status is %s\n", buff, ret, strerror(errno));
+	printf("OG read have read :\n\033[0;32m%s\033[0m\nThe return value is %d\n", buff, ret);
 	close(fd);
 	("Lets see what is happening with ft_read:\n");
 	bzero(buff, 32);
 	fd = open("main.c", O_RDONLY);
 	ret = ft_read(fd, buff, 31);
 	buff[ret] = 0;
-	printf("The ft_read have read :\n\033[0;32m%s\033[0m\nThe return value is %d and status is %s\n", buff, ret, strerror(errno));
+	printf("The ft_read have read :\n\033[0;32m%s\033[0m\nThe return value is %d\n", buff, ret);
 	close(fd);
 	printf("With bad inputs :\n");
 	bzero(buff, 32);
 	ret = read(3, buff, 31);
-	printf("OG read have read :\n\033[0;32m%s\033[0m\nThe return value is %d and status is %s\n", buff, ret, strerror(errno));
+	printf("OG read have read :\n\033[0;32m%s\033[0m\nThe return value is %d\n", buff, ret);
 	ret = ft_read(3, buff, 31);
-	printf("The ft_read have read :\n\033[0;32m%s\033[0m\nThe return value is %d and status is %s\n", buff, ret, strerror(errno));
+	printf("The ft_read have read :\n\033[0;32m%s\033[0m\nThe return value is %d\n", buff, ret);
 }
 
 void	test_ft_strdup(void)
