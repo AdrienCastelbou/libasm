@@ -14,14 +14,14 @@ extern	ssize_t		ft_write(int fildes, char *s, int len);
 
 extern	int			ft_read(int fd, char *buff, int len);
 
+extern	char		*ft_strdup(char *s);
+
 int	main(void)
 {
-	int fd;
-	char	buff[10];
+	int n;
+	char *s = "hello";
+	char *dst;
 
-	fd = open("main.c", O_RDONLY);
-	read(10, buff, 9);
-	buff[9] = 0;
-	printf("%s,   %s", buff, strerror(errno));
-
+	dst = ft_strdup(s);
+	printf("%s, %d\n", dst, (int)strlen(dst));
 }

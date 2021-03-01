@@ -1,6 +1,3 @@
-SECTION .data
-msg     db      'Hello World babyyy!', 10
- 
 SECTION .text
 global  ft_strlen
 
@@ -8,13 +5,13 @@ ft_strlen:
 	push	rdi
 	mov		rax, rdi
 
-nextchar:
+strlen_nextchar:
 	cmp		byte [rax], 0
-	jz		finished
+	jz		strlen_finished
 	inc		rax
-	jmp		nextchar
+	jmp		strlen_nextchar
 
-finished:
+strlen_finished:
 	sub		rax, rdi
 	pop rdi
 	ret
