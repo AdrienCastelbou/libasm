@@ -13,6 +13,10 @@ AR=		libasm.a
 
 NASM=	nasm -felf64
 
+CC=		gcc
+
+FLAGS=	-no-pie -Wall -Wextra -Werror
+
 %.o: %.s
 	$(NASM) $< -o $@
 
@@ -21,11 +25,14 @@ $(NAME):	$(OBJS)
 
 all:	$(NAME)
 
+eval:	$(NAME)
+	$(CC) $(FLAGS) main.c $(AR)
+
 clean:
 	rm -f $(OBJS)
 
 fclean:	clean
-	rm -f $(AR)
+	rm -f $(AR) a.out
 
 re:		$(fclean) $(NAME)
 

@@ -1,9 +1,7 @@
-extern __errno_location
-%include "ft_strlen.s"
-%include "ft_strcpy.s"
-
-SECTION	.text
 global	ft_strdup
+extern __errno_location
+extern ft_strlen
+extern ft_strcpy
 
 ft_strdup:
 	mov	r15, rdi
