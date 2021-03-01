@@ -17,6 +17,8 @@ int			ft_read(int fd, char *buff, int len);
 
 char		*ft_strdup(char *s);
 
+int			ft_atoi_base(char *s, char *base);
+
 void	test_ft_strlen(void)
 {
 	printf("\n\033[0;33mTEST STRLEN\033[0m\n");
@@ -109,11 +111,15 @@ void	test_ft_strdup(void)
 }
 
 int		main(void)
-{
+{/*
 	test_ft_strlen();
 	test_ft_strcpy();
 	test_ft_strcmp();
 	test_ft_write();
 	test_ft_read();
-	test_ft_strdup();
+	test_ft_strdup();*/
+	int nb;
+	
+	nb = ft_atoi_base("q", "ss");
+	printf("%d\n", nb);
 }
