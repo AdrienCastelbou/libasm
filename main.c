@@ -4,17 +4,17 @@
 #include <string.h>
 #include <errno.h>
 
-extern int	ft_strlen(char *s);
+int	ft_strlen(char *s);
 
-extern	char	*ft_strcpy(char *dst, char *src);
+char	*ft_strcpy(char *dst, char *src);
 
-extern	int		ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(char *s1, char *s2);
 
-extern	ssize_t		ft_write(int fildes, char *s, int len);
+ssize_t		ft_write(int fildes, char *s, int len);
 
-extern	int			ft_read(int fd, char *buff, int len);
+int			ft_read(int fd, char *buff, int len);
 
-extern	char		*ft_strdup(char *s);
+char		*ft_strdup(char *s);
 
 int	main(void)
 {
