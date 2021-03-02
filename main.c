@@ -120,6 +120,6 @@ int		main(void)
 	test_ft_strdup();*/
 	int nb;
 	
-	nb = ft_atoi_base("a", "ca0123456789");
+	nb = ft_atoi_base("   -+bc", "0123456789abcdef");
 	printf("%d\n", nb);
 }

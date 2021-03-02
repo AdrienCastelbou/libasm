@@ -14,6 +14,8 @@ ft_atoi_base:
 		cmp		rax, 0
 		je		_check_end
 		call	_ft_atoi
+		cmp		r11, 1
+		je		_ret_neg_int
 		ret
 
 _ft_atoi:
@@ -47,13 +49,19 @@ _take_sign:
 _convert_base:
 		mov		r14b, [rdi + r12] ; get str[i] 
 		call	_ft_strchr ; check if str[i] is in base 
-		cmp		rax, 0 ; check is it is not
-		je		_check_end
-		mov		r14, rax ; put str[i] pos in base in r14 
-		mov		rax, rdx ; put in rax the size of base
-		mul		r13 ; mul size by previous result 
-		add		rax, r14 ; add value of str[i] in unit 
-		mov		r13, rax
+		cmp		rax, -1 ; check if it is not or the end
+		je		_return_atoi 
+		imul	r13, rdx ; mul result by size
+		add		r13, rax ; add char value inside base
+		inc		r12
+		jmp		_convert_base
+
+_return_atoi:
+		mov		rax, r13
+		ret
+
+_ret_neg_int:
+		imul	rax, -1
 		ret
 
 _ft_strchr:
@@ -62,14 +70,17 @@ _ft_strchr:
 
 _cmp_char:
 		cmp		r14b, 0 ; check if it is the end of our str
-		je		_check_end  
+		je		_not_in_base 
 		cmp		byte [rsi + r15], 0 ; check if it is the end of base set
-		je		_check_end
+		je		_not_in_base
 		cmp		r14b, byte [rsi + r15] ; check if c is in the base
 		je		_return_pos
 		inc		r15
 		jmp		_cmp_char
 
+_not_in_base:
+		mov		rax, -1
+		ret
 
 _return_pos:
 		mov		rax, r15
