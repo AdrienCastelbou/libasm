@@ -20,6 +20,7 @@ _ft_atoi:
 		mov		r11, 0 ; sign marker
 		mov		r12, 0 ; loop it
 		mov		r13, 0 ; the integer which is returned
+		mov		rax, 0
 
 _skip_spaces: ; check if str[i] is space
 		mov		r14b, [rdi + r12] 
@@ -44,8 +45,15 @@ _take_sign:
 		je		_get_sign ; if it is, adjust sign value and it++
 
 _convert_base:
-		mov		r14b, [rdi + r12]
-		call	_ft_strchr
+		mov		r14b, [rdi + r12] ; get str[i] 
+		call	_ft_strchr ; check if str[i] is in base 
+		cmp		rax, 0 ; check is it is not
+		je		_check_end
+		mov		r14, rax ; put str[i] pos in base in r14 
+		mov		rax, rdx ; put in rax the size of base
+		mul		r13 ; mul size by previous result 
+		add		rax, r14 ; add value of str[i] in unit 
+		mov		r13, rax
 		ret
 
 _ft_strchr:
@@ -53,12 +61,19 @@ _ft_strchr:
 		mov		rax, 0
 
 _cmp_char:
-		cmp		byte [rsi + r15], 0
+		cmp		r14b, 0 ; check if it is the end of our str
+		je		_check_end  
+		cmp		byte [rsi + r15], 0 ; check if it is the end of base set
 		je		_check_end
-		cmp		r14b, byte [rsi + r15]
-		je		_finished
+		cmp		r14b, byte [rsi + r15] ; check if c is in the base
+		je		_return_pos
 		inc		r15
 		jmp		_cmp_char
+
+
+_return_pos:
+		mov		rax, r15
+		ret
 
 _get_sign:
 		cmp		r11, 0
