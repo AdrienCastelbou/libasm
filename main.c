@@ -120,6 +120,6 @@ int		main(void)
 	test_ft_strdup();*/
 	int nb;
 	
-	nb = ft_atoi_base("q", "ss");
+	nb = ft_atoi_base("q", "0 123456789");
 	printf("%d\n", nb);
 }
