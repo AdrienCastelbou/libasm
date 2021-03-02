@@ -7,8 +7,9 @@ ft_atoi_base:
 		call	ft_strlen
 		mov		rsi, rdi
 		mov		rdi, r15
-		cmp		rax, 2
+		cmp		rax, 2 ; check size of base 
 		jb		_check_end
+		mov		rdx, rax ; save size of the base in rdx
 		call	_check_base
 		cmp		rax, 0
 		je		_check_end
@@ -18,8 +19,9 @@ ft_atoi_base:
 _ft_atoi:
 		mov		r11, 0 ; sign marker
 		mov		r12, 0 ; loop it
+		mov		r13, 0 ; the integer which is returned
 
-_skip_spaces:
+_skip_spaces: ; check if str[i] is space
 		mov		r14b, [rdi + r12] 
 		cmp		r14b, 9
 		je		_it_skip_spaces_loop
@@ -36,12 +38,27 @@ _skip_spaces:
 
 _take_sign:
 		mov		r14b, [rdi + r12]
-		cmp		r14b, 43
-		je		_it_sign
-		cmp		r14b, 45
-		je		_get_sign
-		movsx		rax, r11
+		cmp		r14b, 43 ; check if str[i] is +
+		je		_it_sign ; if it is, just it++
+		cmp		r14b, 45 ; check if str[j] is +
+		je		_get_sign ; if it is, adjust sign value and it++
+
+_convert_base:
+		mov		r14b, [rdi + r12]
+		call	_ft_strchr
 		ret
+
+_ft_strchr:
+		mov		r15, 0
+		mov		rax, 0
+
+_cmp_char:
+		cmp		byte [rsi + r15], 0
+		je		_check_end
+		cmp		r14b, byte [rsi + r15]
+		je		_finished
+		inc		r15
+		jmp		_cmp_char
 
 _get_sign:
 		cmp		r11, 0
