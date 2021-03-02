@@ -9,10 +9,57 @@ ft_atoi_base:
 		mov		rdi, r15
 		cmp		rax, 2
 		jb		_check_end
-		mov		rax, 10
 		call	_check_base
+		cmp		rax, 0
+		je		_check_end
+		call	_ft_atoi
 		ret
 
+_ft_atoi:
+		mov		r11, 0 ; sign marker
+		mov		r12, 0 ; loop it
+
+_skip_spaces:
+		mov		r14b, [rdi + r12] 
+		cmp		r14b, 9
+		je		_it_skip_spaces_loop
+		cmp		r14b, 10
+		je		_it_skip_spaces_loop
+		cmp		r14b, 11
+		je		_it_skip_spaces_loop
+		cmp		r14b, 12
+		je		_it_skip_spaces_loop
+		cmp		r14b, 13
+		je		_it_skip_spaces_loop
+		cmp		r14b, 32
+		je		_it_skip_spaces_loop
+
+_take_sign:
+		mov		r14b, [rdi + r12]
+		cmp		r14b, 43
+		je		_it_sign
+		cmp		r14b, 45
+		je		_get_sign
+		movsx		rax, r11
+		ret
+
+_get_sign:
+		cmp		r11, 0
+		je		_add_neg_sign
+		mov		r11, 0
+		jmp		_it_sign
+
+_add_neg_sign:
+		mov		r11, 1
+		jmp		_it_sign
+
+_it_sign:
+		inc		r12
+		jmp		_take_sign
+
+_it_skip_spaces_loop:
+		inc		r12
+		jmp		_skip_spaces
 
 _check_base:
 		mov		r12, 0 ; init i = 0
