@@ -5,10 +5,9 @@ SRCS=	ft_strlen.s \
 		ft_read.s \
 		ft_strdup.s \
 
-SRCS_BONUS=	ft_atoi_base.s \
-			ft_list_push_front.s \
-			ft_list_size.s \
-			ft_list_sort.s
+SRCS_BONUS=	ft_atoi_base_bonus.s \
+			ft_list_push_front_bonus.s \
+			ft_list_size_bonus.s \
 
 OBJS_BONUS=	$(SRCS_BONUS:.s=.o)
 
