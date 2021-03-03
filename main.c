@@ -27,6 +27,8 @@ int			ft_atoi_base(char *s, char *base);
 
 t_list		*ft_list_push_front(t_list **begin_list, void *data);
 
+int		ft_list_size(t_list *begin_list);
+
 void	test_ft_strlen(void)
 {
 	printf("\n\033[0;33mTEST STRLEN\033[0m\n");
@@ -128,11 +130,14 @@ int		main(void)
 	test_ft_strdup();*/
 	t_list	start;
 	t_list	*begin;
+	t_list	two;
 
+	two.data = "b";
+	two.next = NULL;
 	start.data = "a";
-	start.next = NULL;
+	start.next = &two;
 	begin = &start;
-	ft_list_push_front(&begin, "2");
-	write(1, begin->data, 1);
-	free(begin);
+	//ft_list_push_front(&begin, "2");
+	int n = ft_list_size(begin);
+	printf("%d\n", n);
 }
