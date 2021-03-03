@@ -29,6 +29,8 @@ t_list		*ft_list_push_front(t_list **begin_list, void *data);
 
 int		ft_list_size(t_list *begin_list);
 
+int		ft_list_sort(t_list **begin_list, int (*cmp)());
+
 void	test_ft_strlen(void)
 {
 	printf("\n\033[0;33mTEST STRLEN\033[0m\n");
@@ -131,13 +133,16 @@ int		main(void)
 	t_list	start;
 	t_list	*begin;
 	t_list	two;
+	t_list	three;
 
-	two.data = "b";
-	two.next = NULL;
-	start.data = "a";
+	three.data = "hey";
+	three.next = NULL;
+	two.data = "a";
+	two.next = &three;
+	start.data = "b";
 	start.next = &two;
-	begin = &start;
+	begin = &two;
 	//ft_list_push_front(&begin, "2");
-	int n = ft_list_size(begin);
+	int n = ft_list_sort(&begin, ft_strcmp);
 	printf("%d\n", n);
 }
