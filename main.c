@@ -92,26 +92,11 @@ void	test_ft_strdup(void)
 }
 
 int		main(void)
-{/*
+{
 	test_ft_strlen();
 	test_ft_strcpy();
 	test_ft_strcmp();
 	test_ft_write();
 	test_ft_read();
-	test_ft_strdup();*/
-	t_list	start;
-	t_list	*begin;
-	t_list	two;
-	t_list	three;
-
-	three.data = "hey";
-	three.next = NULL;
-	two.data = "a";
-	two.next = &three;
-	start.data = "b";
-	start.next = &two;
-	begin = &two;
-	//ft_list_push_front(&begin, "2");
-	int n = ft_list_sort(&begin, ft_strcmp);
-	printf("%d\n", n);
+	test_ft_strdup();
 }
