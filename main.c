@@ -5,6 +5,12 @@
 #include <errno.h>
 #include <stdlib.h>
 
+typedef struct		s_list
+{
+	void			*data;
+	struct s_list	*next;
+}					t_list;
+
 int	ft_strlen(char *s);
 
 char	*ft_strcpy(char *dst, char *src);
@@ -18,6 +24,8 @@ int			ft_read(int fd, char *buff, int len);
 char		*ft_strdup(char *s);
 
 int			ft_atoi_base(char *s, char *base);
+
+t_list		*ft_list_push_front(t_list **begin_list, void *data);
 
 void	test_ft_strlen(void)
 {
@@ -118,8 +126,13 @@ int		main(void)
 	test_ft_write();
 	test_ft_read();
 	test_ft_strdup();*/
-	int nb;
-	
-	nb = ft_atoi_base("   -+bc", "0123456789abcdef");
-	printf("%d\n", nb);
+	t_list	start;
+	t_list	*begin;
+
+	start.data = "a";
+	start.next = NULL;
+	begin = &start;
+	ft_list_push_front(&begin, "2");
+	write(1, begin->data, 1);
+	free(begin);
 }
