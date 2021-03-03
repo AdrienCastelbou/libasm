@@ -4,10 +4,13 @@ SRCS=	ft_strlen.s \
 		ft_write.s \
 		ft_read.s \
 		ft_strdup.s \
-		ft_atoi_base.s \
-		ft_list_push_front.s \
-		ft_list_size.s \
-		ft_list_sort.s
+
+SRCS_BONUS=	ft_atoi_base.s \
+			ft_list_push_front.s \
+			ft_list_size.s \
+			ft_list_sort.s
+
+OBJS_BONUS=	$(SRCS_BONUS:.s=.o)
 
 OBJS=	$(SRCS:.s=.o)
 
@@ -29,11 +32,17 @@ $(NAME):	$(OBJS)
 
 all:	$(NAME)
 
+bonus:		$(OBJS) $(OBJS_BONUS)
+	ar -rcs $(AR) $^
+
 eval:	$(NAME)
 	$(CC) $(FLAGS) main.c $(AR)
 
+eval_bonus:	bonus
+	$(CC) $(FLAGS) main_bonus.c $(AR)
+
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean:	clean
 	rm -f $(AR) a.out
