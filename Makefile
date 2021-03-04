@@ -8,7 +8,8 @@ SRCS=	ft_strlen.s \
 SRCS_BONUS=	ft_atoi_base_bonus.s \
 			ft_list_push_front_bonus.s \
 			ft_list_size_bonus.s \
-			ft_list_sort_bonus.s
+			ft_list_sort_bonus.s \
+			ft_list_remove_if_bonus.s
 
 OBJS_BONUS=	$(SRCS_BONUS:.s=.o)
 

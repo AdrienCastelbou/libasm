@@ -57,8 +57,30 @@ void	test_ft_list_sort(void)
 	free(begin);
 }
 
+int		ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
+
 int		main(void)
 {
-	test_ft_atoi_base();
-	test_ft_list_sort();
+	t_list	*begin;
+	t_list	*elem;
+	char	*s;
+	int		i;
+
+	s = ft_strdup("hello");
+	begin = NULL;
+	i = -1;
+	while (++i < 4)
+	{
+		s = ft_strdup("hello");
+		ft_list_push_front(&begin, s);
+	}
+	i = ft_list_size(begin);
+	printf(", %d, ", i);
+	i = ft_list_remove_if(&begin, "hello", ft_strcmp, free);
+	printf("%d", i);
+	i = ft_list_size(begin);
+	printf(", %d", i);
+	//test_ft_atoi_base();
+	//test_ft_list_sort();
+	
 }
