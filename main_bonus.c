@@ -60,7 +60,5 @@ void	test_ft_list_sort(void)
 int		main(void)
 {
 	test_ft_atoi_base();
-	//test_ft_list_push_front();
-	//test_ft_list_size();
 	test_ft_list_sort();
 }
