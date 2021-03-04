@@ -16,39 +16,51 @@ void	test_ft_atoi_base(void)
 	printf("1298 int value in bin base = %d\n", result);
 }
 
-void	test_ft_list_push_front(void)
+void	test_ft_list_sort(void)
 {
 	t_list	start;
 	t_list	*begin;
+	t_list	two;
+	t_list	three;
+	t_list	*current;
+	int		result;
 
-	printf("\n\033[0;33mTEST LST_PUSH_FRONT\033[0m\n");
+	three.data = "42";
+	three.next = NULL;
+	two.data = "americano";
+	two.next = &three;
 	start.data = "hello";
-	start.next = NULL;
+	start.next = &two;
 	begin = &start;
+	printf("\n\033[0;33mTEST LST_PUSH_FRONT\033[0m\n");
 	printf("The data at the beginning of the list is %s\n",(char *) begin->data);
 	ft_list_push_front(&begin, "world");
 	printf("Now, after pushing elem at the top, begin->data = %s\n",(char *) begin->data);
-	free(begin);
-}
-
-void	test_ft_list_size()
-{
-	t_list	one;
-	t_list	two;
-	t_list	three;
-	int		result;
-
-	one.next = &two;
-	two.next = &three;
-	three.next = NULL;
 	printf("\n\033[0;33mTEST LST_SIZE\033[0m\n");
-	result = ft_list_size(&one);
+	result = ft_list_size(begin);
 	printf("the list\'s size is %d\n", result);
+	printf("\n\033[0;33mTEST LST_SORT\033[0m\n");
+	current = begin;
+	while (current)
+	{
+		printf("%s, ", (char *)(current->data));
+		current = current->next;
+	}
+	ft_list_sort(&begin, ft_strcmp);
+	printf("\n");
+	current = begin;
+	while (current)
+	{
+		printf("%s, ", (char *)(current->data));
+		current = current->next;
+	}
+	free(begin);
 }
 
 int		main(void)
 {
 	test_ft_atoi_base();
-	test_ft_list_push_front();
-	test_ft_list_size();
+	//test_ft_list_push_front();
+	//test_ft_list_size();
+	test_ft_list_sort();
 }
