@@ -1,23 +1,4 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
-#include <errno.h>
-#include <stdlib.h>
-
-int	ft_strlen(char *s);
-
-char	*ft_strcpy(char *dst, char *src);
-
-int		ft_strcmp(char *s1, char *s2);
-
-ssize_t		ft_write(int fildes, char *s, int len);
-
-int			ft_read(int fd, char *buff, int len);
-
-char		*ft_strdup(char *s);
-
-int			ft_atoi_base(char *s, char *base);
+#include "libasm.h"
 
 void	test_ft_strlen(void)
 {
@@ -111,15 +92,11 @@ void	test_ft_strdup(void)
 }
 
 int		main(void)
-{/*
+{
 	test_ft_strlen();
 	test_ft_strcpy();
 	test_ft_strcmp();
 	test_ft_write();
 	test_ft_read();
-	test_ft_strdup();*/
-	int nb;
-	
-	nb = ft_atoi_base("   -+01101", "01");
-	printf("%d\n", nb);
+	test_ft_strdup();
 }
