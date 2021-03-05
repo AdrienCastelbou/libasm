@@ -8,12 +8,12 @@ void	test_ft_atoi_base(void)
 	int		result;
 
 	printf("\n\033[0;33mTEST FT_ATOI_BASE\033[0m\n");
-	result = ft_atoi_base("1298", dec);
-	printf("1298 int value in decimal base = %d\n", result);
-	result = ft_atoi_base("1298", hex);
-	printf("1298 int value in hexa base = %d\n", result);
+	result = ft_atoi_base("-1298", dec);
+	printf(">-1298 int value in decimal base = %d\n", result);
+	result = ft_atoi_base("  1298", hex);
+	printf(">  1298 int value in hexa base = %d\n", result);
 	result = ft_atoi_base("1298", bin);
-	printf("1298 int value in bin base = %d\n", result);
+	printf(">1298 int value in bin base = %d\n", result);
 }
 
 void	test_ft_list_sort(void)
@@ -61,41 +61,6 @@ char	*ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void 
 
 int		main(void)
 {
-	t_list	*begin;
-	t_list	*elem;
-	char	*s;
-	int		i;
-
-	//s = ft_strdup("hello");
-	begin = NULL;
-	i = -1;
-	while (++i < 4)
-	{
-		s = ft_strdup("hello");
-		ft_list_push_front(&begin, s);
-		begin->n = i;
-	}
-	ft_list_push_front(&begin, ft_strdup("ya"));
-	begin->n = i;
-	i = ft_list_size(begin);
-	printf(", %d \n ", i);
-	elem = begin;
-	while (elem)
-	{
-		printf("%s, %d\n", (char *)elem->data, elem->n);
-		elem = elem->next;
-	}
-	s = ft_list_remove_if(&begin, "hello", ft_strcmp, free);
-	//printf("s =%s\n", s);
-	i = ft_list_size(begin);
-	printf(", %d\n", i);
-	elem = begin;
-	while (elem)
-	{
-		printf("%s, %d\n", (char *)elem->data, elem->n);
-		elem = elem->next;
-	}
-	//test_ft_atoi_base();
-	//test_ft_list_sort();
-	
+	test_ft_atoi_base();
+	test_ft_list_sort();
 }
