@@ -40,9 +40,13 @@ void	test_ft_write(void)
 {
 	printf("\n\033[0;33mTEST WRITE\033[0m\n");
 	printf(" is writed by real and ret = %d\n", (int)write(1, "hello", 5));
+	printf("errno = %s\n", strerror(errno));
 	printf(" is writed by ft and  ret = %d\n", (int)ft_write(1, "hello", 5));
+	printf("errno = %s\n", strerror(errno));
 	printf(" is writed by real and ret = %d\n", (int)write(10, "hello", 5));
+	printf("errno = %s\n", strerror(errno));
 	printf(" is writed by ft and ret = %d\n", (int)ft_write(10, "hello", 5));
+	printf("errno = %s\n", strerror(errno));
 }
 
 void		test_ft_read()
@@ -69,8 +73,10 @@ void		test_ft_read()
 	bzero(buff, 32);
 	ret = read(3, buff, 31);
 	printf("OG read have read :\n\033[0;32m%s\033[0m\nThe return value is %d\n", buff, ret);
+	printf("errno = %s\n", strerror(errno));
 	ret = ft_read(3, buff, 31);
 	printf("The ft_read have read :\n\033[0;32m%s\033[0m\nThe return value is %d\n", buff, ret);
+	printf("errno = %s\n", strerror(errno));
 }
 
 void	test_ft_strdup(void)
