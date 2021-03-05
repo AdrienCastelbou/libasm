@@ -9,6 +9,7 @@ typedef struct		s_list
 {
 	void			*data;
 	struct s_list	*next;
+	int				n;
 }					t_list;
 
 int	ft_strlen(char *s);

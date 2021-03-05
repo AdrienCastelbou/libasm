@@ -2,16 +2,17 @@ global	ft_list_remove_if
 
 extern	free
 ft_list_remove_if:
-		mov		r10, [rdi] ; r12 = *begin
-		mov		r9, 0 ; previous->next = *begin
-		mov		r11, rdx ; ft_cmp
-		mov		r12, rsi ; data_ref
 		push	rdi ; begin
 		push	rsi ; data_ref
 		push	rdx ; ft_cmp
 		push	rcx ; ft_free
+		mov		r10, [rdi] ; r12 = *begin
+		mov		r9, 0 ; previous->next = *begin
+		mov		r11, rdx ; ft_cmp
+		mov		r12, rsi ; data_ref
+		mov		rax, 0
 
-_loop:
+_rmv_loop:
 		cmp		r10, 0
 		je		_exit
 		mov		rdi, [r10] ; arg 1 = elem->data
@@ -19,37 +20,56 @@ _loop:
 		call	r11 ; call ft_cmp
 		cmp		rax, 0
 		je		_free_and_link ; go free elem
-		jmp		_inc_loop
 
 _inc_loop:
 		mov		r9, r10 ; previous = elem
-		mov		r10, [r9 + 8] ; elem = elem->next
-		jmp		_loop ; loop
+		mov		r10, [r10 + 8] ; elem = elem->next
+		jmp		_rmv_loop ; loop
 
 _free_and_link:
 		cmp		r9, 0 ; check if it is the list begin
-		je		_change_begin
+		je		_set_previous
+		mov		r15, [r10 + 8]
+		mov		[r9 + 8], r15 ; previous->next = elem->next
+		jmp		_free_elem
 
-_free_elem
-		mov		rdi, [r10]
+_free_elem:
+		mov		rdi, [r10] ; free data
 		call	free
-		mov		rdi, r10
+		mov		rdi, r10 ; free elem
 		call	free
-		jmp		_inc_loop
+		cmp		r9, 0
+		je		_set_begin_to_elem
+		mov		r10, r15
+		jmp		_rmv_loop
 
-_change_begin:
+
+_set_begin_to_elem:
 		pop		rcx
 		pop		rdx
 		pop		rsi
-		pop		rdi ; take begin
-		mov		r9, [r10 + 8] ; take elem->next
-		mov		[rdi], r9 ; begin = elem->next
+		pop		rdi
+		mov		r15, [rdi] ; change *begin
+		mov		r10, r15 ; *begin = elem->next
 		push	rdi ; begin
 		push	rsi ; data_ref
 		push	rdx ; ft_cmp
 		push	rcx ; ft_free
-
+		jmp		_rmv_loop
+ 
+_set_previous:
+		pop		rcx
+		pop		rdx
+		pop		rsi
+		pop		rdi
+		mov		r15, [r10 + 8] ; change *begin
+		mov		[rdi], r15 ; *begin = elem->next
+		push	rdi ; begin
+		push	rsi ; data_ref
+		push	rdx ; ft_cmp
+		push	rcx ; ft_free
 		jmp		_free_elem
+
 
 _exit:
 		pop		rcx
