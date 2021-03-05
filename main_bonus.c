@@ -16,7 +16,7 @@ void	test_ft_atoi_base(void)
 	printf(">1298 int value in bin base = %d\n", result);
 }
 
-void	test_ft_list_sort(void)
+void	test_ft_list(void)
 {
 	t_list	start;
 	t_list	*begin;
@@ -57,10 +57,8 @@ void	test_ft_list_sort(void)
 	free(begin);
 }
 
-char	*ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
-
 int		main(void)
 {
 	test_ft_atoi_base();
-	test_ft_list_sort();
+	test_ft_list();
 }
