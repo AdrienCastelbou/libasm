@@ -13,7 +13,7 @@ void	test_ft_atoi_base(void)
 	result = ft_atoi_base("  1298", hex);
 	printf(">  1298 int value in hexa base = %d\n", result);
 	result = ft_atoi_base("1298", bin);
-	printf(">1298 int value in bin base = %d\n", result);
+	printf(">+1298 int value in bin base = %d\n", result);
 }
 
 void	test_ft_list(void)
